@@ -1,3 +1,5 @@
+import 'semantic-ui-css/semantic.css';
+
 import Vue from 'vue';
 import App from './App.vue';
 
