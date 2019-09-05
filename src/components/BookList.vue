@@ -1,29 +1,20 @@
 <template>
   <div class="ui middle aligned selection divided list">
-    <a v-for="book in books" v-bind:key="book.isbn" class="item">
-      <img
-        class="ui tiny image"
-        v-if="book.thumbnails && book.thumbnails[0] && book.thumbnails[0].url"
-        v-bind:src="book.thumbnails[0].url"
-      />
-      <div class="content">
-        <div class="header">{{book.title}}</div>
-        <div v-if="book.subtitle" class="description">{{book.subtitle}}</div>
-        <div class="metadata">
-          <span v-for="(author, index) in book.authors" v-bind:key="index">
-            {{author}}<span v-if="index !== book.authors.length - 1">,</span>
-          </span>
-        </div>
-      </div>
-    </a>
+    <BookListItem v-for="book in books" v-bind:key="book.isbn" v-bind:book="book" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Book } from "../../../angular-book-monkey/src/app/shared/book";
 
-@Component
+import { Book } from "../api/book";
+import BookListItem from "./BookListItem.vue";
+
+@Component({
+  components: {
+    BookListItem
+  }
+})
 export default class BookList extends Vue {
   books: Book[] = [
     {
