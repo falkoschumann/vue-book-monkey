@@ -10,9 +10,10 @@
       <div v-if="book.subtitle" class="description">{{book.subtitle}}</div>
       <div class="metadata">
         <span v-for="(author, index) in book.authors" v-bind:key="index">
-          {{author}}
-          <span v-if="index !== book.authors.length - 1">,</span>
+          {{author}}<span v-if="index !== book.authors.length - 1">,</span>
         </span>
+        <br />
+        ISBN {{book.isbn}}
       </div>
     </div>
   </div>
