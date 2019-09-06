@@ -1,6 +1,11 @@
 <template>
   <div class="ui middle aligned selection divided list">
-    <BookListItem v-for="book in books" v-bind:key="book.isbn" v-bind:book="book" />
+    <BookListItem
+      v-for="book in books"
+      v-bind:key="book.isbn"
+      v-bind:book="book"
+      v-on:showDetailsEvent="showDetails($event)"
+    />
   </div>
 </template>
 
@@ -51,5 +56,9 @@ export default class BookList extends Vue {
         "React ist ein JavaScript-Framework zur Entwicklung von Benutzeroberflächen..."
     }
   ];
+
+  showDetails(book: Book) {
+    this.$emit("showDetailsEvent", book);
+  }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="item">
+  <div class="item" v-on:click="showDetails(book)">
     <img
       class="ui tiny image"
       v-if="book.thumbnails && book.thumbnails[0] && book.thumbnails[0].url"
@@ -10,7 +10,8 @@
       <div v-if="book.subtitle" class="description">{{book.subtitle}}</div>
       <div class="metadata">
         <span v-for="(author, index) in book.authors" v-bind:key="index">
-          {{author}}<span v-if="index !== book.authors.length - 1">,</span>
+          {{author}}
+          <span v-if="index !== book.authors.length - 1">,</span>
         </span>
         <br />
         ISBN {{book.isbn}}
@@ -26,5 +27,9 @@ import { Book } from "../api/book";
 @Component
 export default class BookListItem extends Vue {
   @Prop() book!: Book;
+
+  showDetails(book: Book) {
+    this.$emit("showDetailsEvent", book);
+  }
 }
 </script>
