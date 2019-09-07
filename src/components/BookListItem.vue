@@ -21,15 +21,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import { Book } from "../api/book";
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Book } from '../api/Book';
 
 @Component
 export default class BookListItem extends Vue {
   @Prop() book!: Book;
 
   showDetails(book: Book) {
-    this.$emit("showDetailsEvent", book);
+    this.$emit('showDetailsEvent', book);
   }
 }
 </script>

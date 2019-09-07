@@ -39,13 +39,13 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Book } from "../api/book";
+import { Book } from "../api/Book";
 
 @Component
 export default class BookListItem extends Vue {
   @Prop() book!: Book;
 
-  getRating(num: number): Array<number> {
+  getRating(num: number): number[] {
     return new Array(num);
   }
 
