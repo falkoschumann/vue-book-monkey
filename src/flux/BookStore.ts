@@ -33,6 +33,10 @@ const BookStore = {
   getAll(): Book[] {
     return books;
   },
+
+  getSingle(isbn: string): Book | undefined {
+    return books.find((book) => book.isbn === isbn);
+  },
 };
 
 export default BookStore;

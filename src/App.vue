@@ -1,36 +1,16 @@
 <template>
   <div id="app">
-    <BookList v-if="viewState === 'list'" v-on:showDetailsEvent="showDetails($event)" />
-    <BookDetails v-if="viewState === 'details'" v-bind:book="book" v-on:showListEvent="showList()" />
+    <ul class="ui menu">
+      <router-link to="/home" active-class="active" class="item">Home</router-link>
+      <router-link to="/books" active-class="active" class="item">Bücher</router-link>
+    </ul>
+    <router-view></router-view>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from "vue-property-decorator";
 
-import { Book } from './api/Book';
-import BookList from './components/BookList.vue';
-import BookDetails from './components/BookDetails.vue';
-
-type ViewState = 'list' | 'details';
-
-@Component({
-  components: {
-    BookList,
-    BookDetails,
-  }
-})
-export default class App extends Vue {
-  book?: Book;
-  viewState: ViewState = 'list';
-
-  showList() {
-    this.viewState = 'list';
-  }
-
-  showDetails(book: Book) {
-    this.book = book;
-    this.viewState = 'details';
-  }
-}
+@Component
+export default class App extends Vue {}
 </script>

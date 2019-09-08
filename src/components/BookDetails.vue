@@ -33,24 +33,24 @@
         v-bind:src="thumbnail.url"
       />
     </div>
-    <button class="ui red button" v-on:click="showBookList()">Zurück zur Buchliste</button>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { Book } from "../api/Book";
+import BookStore from "../flux/BookStore";
 
 @Component
 export default class BookListItem extends Vue {
-  @Prop() book!: Book;
+  @Prop() isbn!: string;
+
+  get book() {
+    return BookStore.getSingle(this.isbn);
+  }
 
   getRating(num: number): number[] {
     return new Array(num);
-  }
-
-  showBookList() {
-    this.$emit("showListEvent");
   }
 }
 </script>

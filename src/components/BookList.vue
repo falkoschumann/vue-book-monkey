@@ -1,24 +1,19 @@
 <template>
   <div class="ui middle aligned selection divided list">
-    <BookListItem
-      v-for="book in books"
-      v-bind:key="book.isbn"
-      v-bind:book="book"
-      v-on:showDetailsEvent="showDetails($event)"
-    />
+    <BookListItem v-for="book in books" v-bind:key="book.isbn" v-bind:book="book" />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from "vue-property-decorator";
 
-import { Book } from '../api/Book';
-import BookStore from '../flux/BookStore';
-import BookListItem from './BookListItem.vue';
+import { Book } from "../api/Book";
+import BookStore from "../flux/BookStore";
+import BookListItem from "./BookListItem.vue";
 
 @Component({
   components: {
-    BookListItem,
+    BookListItem
   }
 })
 export default class BookList extends Vue {
@@ -27,10 +22,6 @@ export default class BookList extends Vue {
   constructor() {
     super();
     this.books = BookStore.getAll();
-  }
-
-  showDetails(book: Book) {
-    this.$emit('showDetailsEvent', book);
   }
 }
 </script>
