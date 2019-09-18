@@ -5,23 +5,23 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import Vue from 'vue';
 
-import { Book } from "../api/Book";
-import BookStore from "../flux/BookStore";
-import BookListItem from "./BookListItem.vue";
+import BookListItem from './BookListItem.vue';
+import BookStore from '../flux/BookStore';
+import { Book } from '../api/Book';
 
-@Component({
-  components: {
-    BookListItem
-  }
-})
-export default class BookList extends Vue {
-  books: Book[];
-
-  constructor() {
-    super();
+export default Vue.extend({
+  data() {
+    return {
+      books: [] as Book[],
+    };
+  },
+  mounted() {
     this.books = BookStore.getAll();
-  }
-}
+  },
+  components: {
+    BookListItem,
+  },
+});
 </script>

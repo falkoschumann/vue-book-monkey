@@ -20,11 +20,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import { Book } from "../api/Book";
+import Vue from 'vue';
 
-@Component
-export default class BookListItem extends Vue {
-  @Prop() book!: Book;
-}
+import { Book } from '../api/Book';
+
+export default Vue.extend({
+  props: {
+    book: Object as () => Book,
+  },
+});
 </script>

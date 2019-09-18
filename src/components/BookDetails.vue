@@ -37,20 +37,24 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import { Book } from "../api/Book";
-import BookStore from "../flux/BookStore";
+import Vue from 'vue';
 
-@Component
-export default class BookListItem extends Vue {
-  @Prop() isbn!: string;
+import { Book } from '../api/Book';
+import BookStore from '../flux/BookStore';
 
-  get book() {
-    return BookStore.getSingle(this.isbn);
-  }
-
-  getRating(num: number): number[] {
-    return new Array(num);
-  }
-}
+export default Vue.extend({
+  props: {
+    isbn: String,
+  },
+  methods: {
+    getRating(num: number): number[] {
+      return new Array(num);
+    },
+  },
+  computed: {
+    book(): Book | undefined {
+      return BookStore.getSingle(this.isbn);
+    },
+  },
+});
 </script>
